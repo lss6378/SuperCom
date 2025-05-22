@@ -11,7 +11,7 @@ namespace SuperCom.Config.WindowConfig
         private const int DEFAULT_MEMORY_LIMIT = 1024; // MB
         private const int DEFAULT_SEARCH_DELAY_MS = 500; // MB
         private const float DEFAULT_SEARCH_OPACITY = 1.0F;
-        private const string SEND_PREFIX = "SEND >>>>>>>>>> ";
+        private const string SEND_PREFIX = ">> ";
         private Settings() : base(ConfigManager.SQLITE_DATA_PATH, $"WindowConfig.Settings")
         {
             Width = SystemParameters.WorkArea.Width * 0.7;
