@@ -457,7 +457,7 @@
                                                             </Style>
                                                         </Border.Style>
 
-                                                        <TextBlock Margin="0" FontSize="7">
+                                                        <TextBlock Margin="0" FontSize="10">
                                                             <TextBlock.Style>
                                                                 <Style BasedOn="{StaticResource BaseTextBlock}" TargetType="TextBlock">
                                                                     <Style.Triggers>
