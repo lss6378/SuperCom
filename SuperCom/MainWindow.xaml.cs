@@ -1,5 +1,6 @@
 ﻿
 using ICSharpCode.AvalonEdit;
+using ICSharpCode.AvalonEdit.Document;
 using ICSharpCode.AvalonEdit.Highlighting;
 using ICSharpCode.AvalonEdit.Rendering;
 using ICSharpCode.AvalonEdit.Search;
@@ -115,7 +116,33 @@ namespace SuperCom
                 Logger.Info($"color picker set color: {colorPicker.SelectedColor}");
             };
 
-            Logger.Info("main window init");
+            Logger.Info("main window init1");
+
+            if (vieModel.SideComPorts == null) {
+                Logger.Debug("side com ports is null");
+                return;
+            }
+            int count = vieModel.SideComPorts.Count;
+            for (int i = 0; i < count; i++) {
+                string portName = vieModel.SideComPorts[i].Name;
+                if (string.IsNullOrEmpty(portName)) {
+                    Logger.Debug($"side com port[{i}] name is null");
+                    continue;
+                }
+                SideComPort sideComPort = vieModel.SideComPorts.FirstOrDefault(arg => portName.Equals(arg.Name));
+                if (sideComPort == null) {
+                    Logger.Debug($"side com port[{i}] not found");
+                    continue;
+                }
+                vieModel.SideComPorts[i] = sideComPort;
+                String portType = vieModel.SideComPorts[i].PortType.ToString();
+                Logger.Debug("=====> " + portType);
+
+                if (portType == "BLE") {
+                    vieModel.SideComPorts[i].Hide = true;
+                    Logger.Debug($"hide side com port[{i}]: {portName}");
+                }
+            }
         }
 
         private async void mainWindow_ContentRendered(object sender, EventArgs e)
